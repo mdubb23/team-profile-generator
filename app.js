@@ -5,7 +5,7 @@ console.log('1234@hotmail.com');
 console.log('1');
 console.log('1');
 
-const questions = () => {
+const managerQuestions = () => {
     inquirer.prompt
     ([
         {
@@ -30,5 +30,3 @@ const questions = () => {
         }
     ])
 } 
-
-inquirer.prompt(questions)
