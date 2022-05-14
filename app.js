@@ -5,17 +5,30 @@ console.log('1234@hotmail.com');
 console.log('1');
 console.log('1');
 
-const questions = [
-    {
-        type: 'list',
-        name: 'role',
-        message: 'What is your role?',
-        choices: [
-            'Engineer',
-            'Intern',
-            'Done'
-        ]
-    }
-]
+const questions = () => {
+    inquirer.prompt
+    ([
+        {
+            type: 'input',
+            name: 'manager',
+            message: 'What is your managers name?',
+        },
+        {
+            type: 'input',
+            name: 'managerEmail',
+            message: 'What is your managers Email?',
+        },
+        {
+            type: 'input',
+            name: 'managerID',
+            message: 'What is your managers employee ID?',
+        },
+        {
+            type: 'input',
+            name: 'managerOfficeNumber',
+            message: 'What is your managers office number?',
+        }
+    ])
+} 
 
 inquirer.prompt(questions)
