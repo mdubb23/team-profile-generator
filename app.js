@@ -1,5 +1,17 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
+const { table } = require('console');
+
+const employees = []
+
+const Employee = {
+    Intern: "Intern",
+    Engineer: "Engineer",
+    Manager: "Manager"
+};
 
 
 const managerQuestions = () => {
@@ -7,7 +19,7 @@ const managerQuestions = () => {
     ([
         {
             type: 'input',
-            name: 'manager',
+            name: 'name',
             message: 'What is your managers name?',
         },
         {
@@ -25,10 +37,22 @@ const managerQuestions = () => {
             name: 'managerOfficeNumber',
             message: 'What is your managers office number?',
         }
-    ])
 
-    addEmployee()
-    
+    ])
+    .then((data) => {
+        const manager = new Manager(
+            data.name,
+            data.managerEmail,
+            data.managerID,
+            data.managerOfficeNumber
+            
+        );
+        console.table(manager);
+        employees.push(manager);
+        addEmployee();
+    });
+
+
 }
 
 const addEmployee = () => {
@@ -58,6 +82,8 @@ const addEmployee = () => {
     })
 }
 
+
+
 const internQuestions = () => {
     inquirer.prompt([
         {
@@ -72,7 +98,7 @@ const internQuestions = () => {
         },
         {
             type: 'input',
-            name: 'employeeEmail',
+            name: 'email',
             message: 'What is your Email?'
         },
         {
@@ -81,6 +107,18 @@ const internQuestions = () => {
             message: 'What school do you attend?'
         }
     ])
+
+    .then((data) => {
+        const intern = new Intern(
+            data.name,
+            data.employeeID,
+            data.email,
+            data.school
+        )
+        console.table(intern);
+        employees.push(intern);
+        addEmployee();
+    })
     
 }
 
@@ -90,25 +128,39 @@ const engineerQuestions = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is your name?'
+            message: 'What is the employees name?'
         },
         {
             type: 'input',
             name: 'employeeID',
-            message: 'What is your employee ID?'
+            message: 'What is the employees ID?'
         },
         {
             type: 'input',
-            name: 'employeeEmail',
-            message: 'What is your Email?'
+            name: 'email',
+            message: 'What is the employees Email?'
         },
         {
             type: 'input',
             name: 'github',
-            message: 'What is your github username?'
+            message: 'What is the employees github username?'
         }
     ])
+
+    .then((data) => {
+        const engineer = new Engineer(
+        data.name,
+        data.employeeID,
+        data.email,
+        data.github
+        )
+        console.table(engineer);
+        employees.push(engineer);
+        addEmployee()
+    })
 }
+
+
 
 const createFile = function() {
     return
