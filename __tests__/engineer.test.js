@@ -12,3 +12,9 @@ test("getRole() should return 'Engineer'", () => {
      const e = new Engineer("Mdubb", 1, "test@test.com", "Octocat");
      expect(e.getRole()).toBe(testRole);
  });
+
+ test("Can get github from getGithub()", () => {
+    const testAccount = "Octocat";
+    const e = new Engineer("Mdubb", 1, "test@test.com", testAccount);
+    expect(e.getGithub()).toBe(testAccount)
+})
